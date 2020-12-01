@@ -21,7 +21,7 @@ for (var i = 0; i < 9; i++) {
     var currentTimeBlock = $(timeSlotHour[i]).attr("data-time");
     //console.log(currentTimeBlock);
     //console.log("tom daley");
-    // if statment to assign past present or future class to a given time slot
+    // if statement to assign past present or future class to a given time slot
     if (currentTimeBlock < currentHour) {
         $(ppfTime[i]).addClass("past");
     } 
@@ -37,28 +37,20 @@ for (var i = 0; i < 9; i++) {
 // Saving input data to local storage with click event listener
 var savedEventBtn = $(".saveBtn");
 savedEventBtn.on("click", function (event) {
-    //event.preventDefault();
     var clickedButton = $(this);
     var hourButtonClicked = $(clickedButton).siblings("div").data("time");
     var eventInput = $(clickedButton).prev("textarea").val();
     localStorage.setItem("scheduled-hour-" + hourButtonClicked, eventInput);
-    console.log(hourButtonClicked);
-    console.log(clickedButton);
-    console.log("Taylorswift");
+    //console.log(hourButtonClicked);
+    //console.log(clickedButton);
 });
-//get the saved text back after the page is reloaded
-// function getSavedEvent() {
-//     for (var i = 9; i < 18; i++) {
-//         eventSaved = $("#saved-event-" + i);
-//         var savedEventText = localStorage.getItem("scheduled-hour-" + i, "eventInput");
-        
-//         eventSaved.text(savedEventText);
-//     }
-// }
 
-function myFunction() {
-    var x = localStorage.getItem("scheduled-hour-11");
-    document.getElementById("saved-event-11").innerHTML = x;
-    console.log(x);
+//Function to retrieve items from local storage and allow them to PERSIST when the page reloads.
+function getSavedEvent() {
+    for (var i = 9; i < 18; i++) {
+        var eventSaved = localStorage.getItem("scheduled-hour-" + i);
+        document.getElementById("saved-event-" + i).innerHTML = eventSaved;
+        console.log(eventSaved);
+    }
   };
-  myFunction();
+  getSavedEvent();
