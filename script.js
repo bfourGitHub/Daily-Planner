@@ -19,12 +19,13 @@ var timeSlotHour = $(".hour");
 //For loop to go through each hour of the day
 for (var i = 0; i < 9; i++) {
     var currentTimeBlock = $(timeSlotHour[i]).attr("data-time");
-    console.log(currentTimeBlock);
-    console.log("tom daley");
+    //console.log(currentTimeBlock);
+    //console.log("tom daley");
+    // if statment to assign past present or future class to a given time slot
     if (currentTimeBlock < currentHour) {
         $(ppfTime[i]).addClass("past");
     } 
-    else if (currentTimeBlock === currentHour) {
+    else if (currentTimeBlock == currentHour) {
         $(ppfTime[i]).addClass("present");
     }
     else if (currentTimeBlock > currentHour) {
@@ -32,7 +33,23 @@ for (var i = 0; i < 9; i++) {
     }
 };
 
-// if statment to assign past present or future class to a given time slot
-
 
 // Saving input data to local storage with click event listener
+var savedEventBtn = $(".saveBtn");
+savedEventBtn.on("click", function (event) {
+    event.preventDefault();
+    var clickedButton = $(this);
+    var hourButtonClicked = $(clickedButton).siblings("div").data("time");
+    var eventInput = $(clickedButton).prev("textarea").val();
+    localStorage.setItem("scheduled-hour-" + hourButtonClicked, eventInput);
+    console.log(hourButtonClicked);
+});
+//get the saved text back after the page is reloaded
+function getSavedEvent() {
+    for (var i = 9; i < 18; i++) {
+        eventSaved = $("#saved-event-" + i);
+        var savedEventText = localStorage.getItem("scheduled-hour-" + i, "eventInput");
+        
+        eventSaved.text(savedEventText);
+    }
+}
