@@ -54,7 +54,8 @@ THEN the saved events persist
 ```
 
 ### Link To Github
-
+https://github.com/bfourGitHub/Daily-Planner
 
 ### Link to Deployed Application
+https://bfourgithub.github.io/Daily-Planner/
 
